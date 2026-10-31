@@ -1,6 +1,7 @@
 mod block_tuning_and_invert;
 mod commands_and_gamemode;
 mod embedded_stop;
+mod fist_attack;
 mod login_and_movement;
 mod loot_tables;
 mod player_actions;
@@ -42,6 +43,8 @@ pub async fn run_bot_tests(
         .await?;
 
     allay::run_allay_interaction_test(server, &mut bot1, summary_lines).await?;
+
+    fist_attack::run_fist_attack_charge_test(server, &bot1, summary_lines)?;
 
     player_actions::run_player_actions_and_disconnect_tests(server, bot1, bot2, summary_lines)
         .await?;

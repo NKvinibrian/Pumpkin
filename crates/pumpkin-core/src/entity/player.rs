@@ -1348,10 +1348,8 @@ impl Player {
 
         {
             let stack = &item_stack;
-            if stack.is_empty() {
-                // Vanilla fist: base_attack_speed = -2.4
-                add_speed = -2.4;
-            } else if let Some(modifiers) = stack.get_data_component::<AttributeModifiersImpl>() {
+            // An empty hand has no modifiers, so the fist keeps the base attack speed.
+            if let Some(modifiers) = stack.get_data_component::<AttributeModifiersImpl>() {
                 // Only attack speed is read from the item here.
                 // Attack damage is already  part of `base_damage` via the held item's live
                 // ATTACK_DAMAGE modifier, re-adding it here would double it.
